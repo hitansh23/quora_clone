@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Questions</h2>
+<a href="{% url 'post_question' %}">+ Ask a Question</a>
+<ul>
+  {% for question in questions %}
+    <li><a href="{% url 'question_detail' question.pk %}">{{ question.title }}</a></li>
+  {% empty %}
+    <li>No questions yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

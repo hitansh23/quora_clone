@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ question.title }}</h2>
+<p>{{ question.description }}</p>
+<hr>
+
+<h3>Answers</h3>
+<ul>
+  {% for answer in answers %}
+    <li>
+      {{ answer.content }} - <i>{{ answer.user.username }}</i>
+      <a href="{% url 'like_answer' answer.id %}">👍 Like ({{ answer.like_count }})</a>
+    </li>
+  {% empty %}
+    <li>No answers yet.</li>
+  {% endfor %}
+</ul>
+
+<h3>Your Answer</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Post Answer</button>
+</form>
+{% endblock %}
